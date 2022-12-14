@@ -1,0 +1,34 @@
+/* query for first insight */
+
+SELECT Artist.Name,
+count(Album.ArtistId) as  "Albums"
+FROM Album
+JOIN Artist on Album.ArtistId = Artist.ArtistId
+GROUP by Artist.Name 
+HAVING count(Album.ArtistId) >=5 
+
+/* query for second insight */
+
+  SELECT C.Country as " Country Name",
+  	sum(I.total) as " total"
+  FROM Customer C
+  JOIN Invoice I ON c.CustomerId = i.CustomerId
+  GROUP by " Country Name"  ORDER BY total DESC LIMIT 5;
+
+/* query for third insight */
+
+SELECT ("FirstName") ||" " || ("LastName") as Customer_name, sum( total) as "total"
+FROM customer
+JOIN invoice ON customer.CustomerId = invoice.CustomerId
+GROUP BY customer.CustomerId ORDER BY  "total" DESC
+LIMIT 3 ;
+
+/* query for fourth insight */
+
+SELECT Genre.Name , count(Track.GenreId ) as "total"
+FROM Track
+JOIN Genre
+on Track.GenreId= Genre.GenreId
+GROUP by Genre.Name ORDER by "total" DESC
+LIMIT 5;
+
